@@ -68,11 +68,11 @@
   .dphead .dttl { font-weight:700; font-size:16px; }
   .dphead .dtrain { margin-left:auto; font-size:13px; opacity:.92; text-align:right;}
   .dpbody { padding:18px; }
-  .mini-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .mini-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
   .mini { background:#faf8f2; border:1px solid #efe9dc; border-radius:10px; padding:10px; text-align:center; }
   .mini .mv { font-size:17px; font-weight:800; font-family:'DM Mono',monospace; }
   .mini .ml { font-size:9px; color:#9a9484; letter-spacing:0.5px; text-transform:uppercase; margin-top:2px; }
-  @media(max-width:640px){ .mini-grid{grid-template-columns:repeat(2,1fr);} .cell .dd{display:none;} }
+  @media(max-width:640px){ .mini-grid{grid-template-columns:repeat(3,1fr);} .cell .dd{display:none;} }
   .lbl2 { font-size:11px; letter-spacing:1px; color:#a89a78; text-transform:uppercase; font-weight:700; margin:16px 0 6px; }
   .ex-line { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #f0ece2; font-size:13px; }
   .ex-line:last-child{border-bottom:none;} .ex-line .en{color:#3a352c; font-weight:600;} .ex-line .ed{color:#867f70;}
@@ -96,6 +96,20 @@
   .ex .big { font-size:22px; font-weight:800; font-family:'DM Mono',monospace; color:#a07d28; margin-top:6px; }
   .ex .meta { font-size:12px; color:#867f70; margin-top:3px; }
   .ex-total { background:#2a2722; color:#fff; border:none; } .ex-total .name,.ex-total .meta{color:#d8d0c0;} .ex-total .big{color:#fff;}
+  .ex { cursor:pointer; transition:all 0.2s; } .ex:hover { transform:translateY(-2px); box-shadow:0 6px 16px rgba(120,100,60,0.12); }
+  .meal-table { border:1px solid #efe9dc; border-radius:10px; overflow:hidden; margin-bottom:12px; }
+  .meal-row { display:grid; grid-template-columns:1fr repeat(4,60px); gap:0; padding:8px 10px; border-bottom:1px solid #f0ece2; font-size:12px; }
+  .meal-row:last-child { border-bottom:none; }
+  .meal-header { background:#faf8f2; font-weight:700; color:#867f70; text-transform:uppercase; letter-spacing:0.5px; }
+  .meal-name { color:#3a352c; font-weight:600; }
+  .meal-stat { text-align:center; color:#2a2722; font-family:'DM Mono',monospace; font-weight:600; }
+
+  .ex-detail { border:1px solid #e2ddd2; border-radius:14px; padding:18px; background:#faf8f2; }
+  .ex-detail-head { font-size:14px; font-weight:700; color:#1c1a16; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .ex-detail-head .icon { font-size:18px; }
+  .ex-detail-rows { display:flex; flex-direction:column; gap:10px; }
+  .ex-row { display:flex; justify-content:space-between; padding:10px; background:#fff; border:1px solid #efe9dc; border-radius:10px; font-size:13px; }
+  .ex-row .date { color:#867f70; font-weight:600; } .ex-row .total { color:#2f8a60; font-weight:700; font-family:'DM Mono',monospace; }
 </style>
 </head>
 <body>
@@ -106,10 +120,10 @@
     <h1>The Dashboard</h1>
     <div class="sub">Cut to ~15% body fat · Phase 1 ends July 24 (30th birthday)</div>
     <div class="hero hero6">
-      <div class="stat"><div class="v green">176.6</div><div class="l">Current (fasted)</div><div class="d">from 180.4 start</div></div>
-      <div class="stat"><div class="v green">−0.4</div><div class="l">Pounds Lost</div><div class="d">from 177.0 fasted (Day 5)</div></div>
-      <div class="stat"><div class="v">6</div><div class="l">Days Completed</div><div class="d">Phase 1</div></div>
-      <div class="stat"><div class="v gold">51</div><div class="l">Days to July 24</div><div class="d">Phase 1 end</div></div>
+      <div class="stat"><div class="v green">175.6</div><div class="l">Current (fasted)</div><div class="d">from 180.4 start</div></div>
+      <div class="stat"><div class="v green">−1.4</div><div class="l">Pounds Lost</div><div class="d">from 177.0 fasted (Day 5)</div></div>
+      <div class="stat"><div class="v">7</div><div class="l">Days Completed</div><div class="d">Phase 1</div></div>
+      <div class="stat"><div class="v gold">50</div><div class="l">Days to July 24</div><div class="d">Phase 1 end</div></div>
       <div class="stat"><div class="v">2,315</div><div class="l">Avg Calories</div><div class="d">avg target ~2,300</div></div>
       <div class="stat"><div class="v">190g</div><div class="l">Avg Protein</div><div class="d">target 180g</div></div>
     </div>
@@ -161,31 +175,38 @@
 
   <div class="card">
     <div class="section-label">Exercise Totals — Phase 1 to date</div>
-    <div class="ex-grid">
-      <div class="ex"><div class="icon">🏋️</div><div class="name">Weight Training</div><div class="big">7h 20m</div><div class="meta">6 sessions</div></div>
-      <div class="ex"><div class="icon">🏃</div><div class="name">Running</div><div class="big">8.87 mi</div><div class="meta">2 runs · 1h 35m</div></div>
-      <div class="ex"><div class="icon">🚶</div><div class="name">Walking</div><div class="big">9.75 mi</div><div class="meta">2 walks · 2h 56m</div></div>
-      <div class="ex"><div class="icon">🚣</div><div class="name">Rowing</div><div class="big">10,000 m</div><div class="meta">1 row · 46m</div></div>
-      <div class="ex"><div class="icon">🪜</div><div class="name">Stairs + Climb</div><div class="big">2,271 ft</div><div class="meta">120 floors + 2,151 ft</div></div>
-      <div class="ex ex-total"><div class="icon">⏱️</div><div class="name">Total Training Time</div><div class="big">13h 7m</div><div class="meta">12 sessions · 6 days</div></div>
+    <div class="ex-grid" id="exGrid">
+      <div class="ex" onclick="showExDetail('lift',this)"><div class="icon">🏋️</div><div class="name">Weight Training</div><div class="big">7h 20m</div><div class="meta">6 sessions</div></div>
+      <div class="ex" onclick="showExDetail('run',this)"><div class="icon">🏃</div><div class="name">Running</div><div class="big">8.87 mi</div><div class="meta">2 runs · 1h 35m</div></div>
+      <div class="ex" onclick="showExDetail('walk',this)"><div class="icon">🚶</div><div class="name">Walking</div><div class="big">9.75 mi</div><div class="meta">2 walks · 2h 56m</div></div>
+      <div class="ex" onclick="showExDetail('row',this)"><div class="icon">🚣</div><div class="name">Rowing</div><div class="big">10,000 m</div><div class="meta">1 row · 46m</div></div>
+      <div class="ex" onclick="showExDetail('climb',this)"><div class="icon">🪜</div><div class="name">Stairs + Climb</div><div class="big">2,271 ft</div><div class="meta">120 floors + 2,151 ft</div></div>
+      <div class="ex ex-total" style="cursor:auto;"><div class="icon">⏱️</div><div class="name">Total Training Time</div><div class="big">13h 7m</div><div class="meta">12 sessions · 6 days</div></div>
     </div>
+    <div id="exDetail" style="margin-top:18px;"></div>
     <div class="chart-note" style="margin-top:16px;">Foot distance (run + walk): <b>18.62 mi</b> · plus 10k rowed · plus serious vertical. Set/rep detail lives in Jefit &amp; Strava.</div>
   </div>
 
-  <div class="footer">Generated by Claude · Project Revenge Body · updated through Day 6 (Tue Jun 3, 2026)</div>
+  <div class="card">
+    <div class="section-label">NEAT Steps — Daily Non-Exercise Activity</div>
+    <div class="chart-box"><canvas id="stepsChart"></canvas></div>
+    <div class="chart-note">Daily step count excluding structured exercise. Helps track general movement and activity level throughout the day.</div>
+  </div>
+
+  <div class="footer">Generated by Claude · Project Revenge Body · updated through Day 7 (Wed Jun 3, 2026)</div>
 </div>
 
 <script>
 const BMR=1800, NEAT=250, BASE=BMR+NEAT;
 // dow: 0=Mon..6=Sun. isRest flag for rest days (color). week index for calendar rows.
 const dayData = [
-  { n:1, date:'Thu May 28', dow:3, week:0, rest:false, cal:2264, pro:170, carb:233, fat:79, exFloor:535, exReal:714, exWatch:900, defFloor:321, defReal:500, defWatch:686, ex:[{name:'Legs (Strength)',d:'1h 00m'},{name:'Stairs',d:'30m · 120 floors'}] },
-  { n:2, date:'Fri May 29', dow:4, week:0, rest:false, cal:2376, pro:181, carb:230, fat:87, exFloor:850, exReal:1126, exWatch:1398, defFloor:524, defReal:800, defWatch:1072, ex:[{name:'Push',d:'1h 20m'},{name:'Run',d:'6.04 mi · 1h 04m'}] },
-  { n:3, date:'Sat May 30', dow:5, week:0, rest:false, cal:2289, pro:201, carb:244, fat:63, exFloor:485, exReal:649, exWatch:815, defFloor:246, defReal:410, defWatch:576, ex:[{name:'Pull',d:'1h 14m'},{name:'Row',d:'10,000 m · 46m'}] },
-  { n:4, date:'Sun May 31', dow:6, week:0, rest:false, cal:2401, pro:194, carb:260, fat:74, exFloor:765, exReal:971, exWatch:1167, defFloor:414, defReal:620, defWatch:816, ex:[{name:'Legs + Abs',d:'1h 12m'},{name:'Walk',d:'7.0 mi · 2h 01m'}] },
-  { n:5, date:'Mon Jun 2', dow:0, week:1, rest:false, cal:2270, pro:199, carb:251, fat:59, exFloor:633, exReal:845, exWatch:1057, defFloor:413, defReal:625, defWatch:837, ex:[{name:'Push',d:'1h 13m'},{name:'HIIT Run',d:'2.83 mi · 31m'}] },
-  { n:6, date:'Tue Jun 3', dow:1, week:1, rest:false, cal:2289, pro:192, carb:263, fat:59, exFloor:723, exReal:899, exWatch:1096, defFloor:484, defReal:660, defWatch:857, ex:[{name:'Pull',d:'1h 21m'},{name:'Incline Walk',d:'2.75 mi · 2,151 ft · 55m'}] },
-  { n:7, date:'Wed Jun 4', dow:2, week:1, rest:true, wt:175.6, cal:2100, pro:187, carb:240, fat:49, exFloor:140, exReal:155, exWatch:186, defFloor:90, defReal:105, defWatch:142, ex:[{name:'Recovery Walk',d:'2.25 mi · 42m'}] },
+  { n:1, date:'Thu May 28', dow:3, week:0, rest:false, cal:2264, pro:170, carb:233, fat:79, exFloor:535, exReal:714, exWatch:900, defFloor:321, defReal:500, defWatch:686, water:null, neatSteps:7900, meals:[{name:'Breakfast',cal:315,pro:48,carb:10,fat:10},{name:'Lunch',cal:905,pro:52,carb:105,fat:33},{name:'Dinner',cal:694,pro:39,carb:82,fat:25},{name:'Snacks',cal:350,pro:31,carb:36,fat:11}], ex:[{name:'Legs (Strength)',d:'1h 00m'},{name:'Stairs',d:'30m · 120 floors'}] },
+  { n:2, date:'Fri May 29', dow:4, week:0, rest:false, cal:2376, pro:181, carb:230, fat:87, exFloor:850, exReal:1126, exWatch:1398, defFloor:524, defReal:800, defWatch:1072, water:'130oz', neatSteps:7232, meals:[{name:'Breakfast',cal:230,pro:42,carb:9,fat:4},{name:'Lunch',cal:942,pro:57,carb:87,fat:41},{name:'Dinner',cal:970,pro:56,carb:108,fat:38},{name:'Snacks',cal:234,pro:26,carb:25,fat:4}], ex:[{name:'Push',d:'1h 20m'},{name:'Run',d:'6.04 mi · 1h 04m'}] },
+  { n:3, date:'Sat May 30', dow:5, week:0, rest:false, cal:2289, pro:201, carb:244, fat:63, exFloor:485, exReal:649, exWatch:815, defFloor:246, defReal:410, defWatch:576, water:'129oz', neatSteps:7900, meals:[{name:'Breakfast',cal:230,pro:42,carb:9,fat:4},{name:'Lunch',cal:817,pro:55,carb:80,fat:31},{name:'Dinner',cal:834,pro:55,carb:117,fat:22},{name:'Snacks',cal:413,pro:52,carb:35,fat:7}], ex:[{name:'Pull',d:'1h 14m'},{name:'Row',d:'10,000 m · 46m'}] },
+  { n:4, date:'Sun May 31', dow:6, week:0, rest:false, cal:2401, pro:194, carb:260, fat:74, exFloor:765, exReal:971, exWatch:1167, defFloor:414, defReal:620, defWatch:816, water:'144oz', neatSteps:2000, meals:[{name:'Breakfast',cal:230,pro:42,carb:9,fat:4},{name:'Lunch',cal:798,pro:51,carb:88,fat:28},{name:'Dinner',cal:1137,pro:85,carb:129,fat:37},{name:'Snacks',cal:248,pro:16,carb:30,fat:9}], ex:[{name:'Legs + Abs',d:'1h 12m'},{name:'Walk',d:'7.0 mi · 2h 01m'}] },
+  { n:5, date:'Mon Jun 1', dow:0, week:1, rest:false, wt:177.0, cal:2270, pro:199, carb:251, fat:59, exFloor:633, exReal:845, exWatch:1057, defFloor:413, defReal:625, defWatch:837, water:'135oz', neatSteps:6689, meals:[{name:'Breakfast',cal:562,pro:59,carb:64,fat:10},{name:'Lunch',cal:710,pro:38,carb:87,fat:24},{name:'Dinner',cal:691,pro:63,carb:75,fat:19},{name:'Snacks',cal:307,pro:39,carb:25,fat:6}], ex:[{name:'Push',d:'1h 13m'},{name:'HIIT Run',d:'2.83 mi · 31m'}] },
+  { n:6, date:'Tue Jun 2', dow:1, week:1, rest:false, wt:176.6, cal:2304, pro:189, carb:270, fat:58, exFloor:723, exReal:899, exWatch:1096, defFloor:484, defReal:660, defWatch:857, water:'120oz', neatSteps:4300, meals:[{name:'Breakfast',cal:587,pro:59,carb:70,fat:10},{name:'Lunch',cal:739,pro:39,carb:93,fat:24},{name:'Dinner',cal:617,pro:49,carb:74,fat:17},{name:'Snacks',cal:361,pro:41,carb:33,fat:7}], ex:[{name:'Pull',d:'1h 21m'},{name:'Incline Walk',d:'2.75 mi · 2,151 ft · 55m'}] },
+  { n:7, date:'Wed Jun 3', dow:2, week:1, rest:true, wt:175.6, cal:2100, pro:187, carb:248, fat:48, exFloor:140, exReal:155, exWatch:186, defFloor:90, defReal:105, defWatch:142, water:null, neatSteps:6200, meals:[{name:'Breakfast',cal:446,pro:67,carb:21,fat:11},{name:'Lunch',cal:502,pro:15,carb:77,fat:16},{name:'Dinner',cal:836,pro:70,carb:104,fat:18},{name:'Snacks',cal:318,pro:28,carb:46,fat:3}], ex:[{name:'Recovery Walk',d:'2.25 mi · 42m'}] },
 ];
 // upcoming planned (no data yet) — shown faint in calendar
 const upcoming = [
@@ -214,10 +235,10 @@ const nAnchored=dayData.filter(d=>d.n>=ANCHOR_DAY).length;
 const avgF=cumF/nAnchored, avgR=cumR/nAnchored;
 const foreF=[{x:lastN,y:expF[expF.length-1].y},{x:FCAST,y:+(expF[expF.length-1].y-avgF*5/3500).toFixed(2)}];
 const foreR=[{x:lastN,y:expR[expR.length-1].y},{x:FCAST,y:+(expR[expR.length-1].y-avgR*5/3500).toFixed(2)}];
-const actual=[{x:5,y:177.0},{x:6,y:176.6}];
+const actual=[{x:5,y:177.0},{x:6,y:176.6},{x:7,y:175.6}];
 const checkpoint=[{x:4,y:180.4}];
-const xTicks=[4,5,6,FCAST];
-const xTickLabels={4:'Start',5:'D5',6:'D6'}; xTickLabels[FCAST]='+'+(FCAST-lastN)+'d';
+const xTicks=[4,5,6,7,FCAST];
+const xTickLabels={4:'Start',5:'D5',6:'D6',7:'D7'}; xTickLabels[FCAST]='+'+(FCAST-lastN)+'d';
 
 const weightChart=new Chart(document.getElementById('weightChart'),{
   type:'line',
@@ -231,7 +252,7 @@ const weightChart=new Chart(document.getElementById('weightChart'),{
   ]},
   options:{ responsive:true, maintainAspectRatio:false,
     plugins:{ legend:{display:false},
-      tooltip:{ filter:(i)=>!i.dataset.label.startsWith('_'), callbacks:{ title:(items)=>{const x=items[0].parsed.x; return x===4?'Start checkpoint':x===FCAST?('+'+(FCAST-lastN)+' days'):'Day '+x;}, label:(c)=>c.dataset.label+': '+c.parsed.y+' lb' } } },
+      tooltip:{ filter:(i)=>!i.dataset.label.startsWith('_'), callbacks:{ title:(items)=>{const x=items[0].parsed.x; const day=dayData.find(d=>d.n===x); const date=day?day.date:''; return x===4?'Start checkpoint':x===FCAST?('+'+(FCAST-lastN)+' days'):('Day '+x+' — '+date);}, label:(c)=>c.dataset.label+': '+c.parsed.y+' lb' } } },
     scales:{
       y:{ min:174, max:181, grid:{color:gridc}, ticks:{callback:v=>v+' lb'} },
       x:{ type:'linear', min:4, max:FCAST+0.5,
@@ -312,6 +333,25 @@ function setWindow(w,btn){
   buildDeficit();
 }
 
+// steps chart
+let stepsChart;
+function buildSteps(){
+  if(stepsChart) stepsChart.destroy();
+  const dd=dayData;
+  stepsChart=new Chart(document.getElementById('stepsChart'),{
+    type:'bar',
+    data:{
+      labels:dd.map(d=>'Day '+d.n),
+      datasets:[{label:'NEAT Steps',data:dd.map(d=>d.neatSteps),backgroundColor:'#867f70',borderRadius:6}]
+    },
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.parsed.y.toLocaleString()+' steps'}}},
+      scales:{y:{beginAtZero:true,grid:{color:gridc}},x:{grid:{display:false}}}
+    }
+  });
+}
+buildSteps();
+
 // compute cumulative est. lbs lost (conservative + real) through each day
 (function(){ let cf=0, cr=0; dayData.forEach(d=>{ cf+=d.defFloor; cr+=d.defReal; d.lbsF=+(cf/3500).toFixed(2); d.lbsR=+(cr/3500).toFixed(2); }); })();
 
@@ -327,7 +367,7 @@ for(let w=0; w<weeks; w++){
     if(d){
       cell.className='cell logged '+(d.rest?'rest':'train');
       cell.dataset.n=d.n;
-      cell.innerHTML=`<div class="dn">Day ${d.n}</div><div class="dd">${d.date.split(' ').slice(1).join(' ')}</div><div class="cw">${(d.cal/1000).toFixed(2)}k</div><div class="lblb">−${d.lbsF} / −${d.lbsR} lb</div>`;
+      cell.innerHTML=`<div class="dn">Day ${d.n}</div><div class="dd">${d.date.split(' ').slice(1).join(' ')}</div><div class="cw">${(d.cal/1000).toFixed(2)}k</div><div class="lblb">−${(d.defFloor/3500).toFixed(2)} / −${(d.defReal/3500).toFixed(2)} lb<br><span style="font-size:9px;color:#9a9484;">(cum: −${d.lbsF} / −${d.lbsR})</span></div>`;
       cell.onclick=()=>selectDay(d.n,cell);
     } else if(u){
       cell.className='cell upcoming';
@@ -358,9 +398,18 @@ function selectDay(n,cell){
           <div class="mini"><div class="mv" style="color:#2f8a60">${d.pro}g</div><div class="ml">Protein</div></div>
           <div class="mini"><div class="mv" style="color:#3f6fc4">${d.carb}g</div><div class="ml">Carbs</div></div>
           <div class="mini"><div class="mv" style="color:#cf7a3a">${d.fat}g</div><div class="ml">Fat</div></div>
+          <div class="mini"><div class="mv" style="color:#3f6fc4">${d.water || '—'}</div><div class="ml">Water</div></div>
+          <div class="mini"><div class="mv" style="color:#867f70">${d.neatSteps ? d.neatSteps.toLocaleString() : '—'}</div><div class="ml">NEAT Steps</div></div>
         </div>
         <div class="lbl2">Exercise</div>
         ${exLines}
+        <div class="lbl2">Meal Breakdown</div>
+        <div class="meal-table">
+          <div class="meal-row meal-header">
+            <div class="meal-name">Meal</div><div class="meal-stat">Cal</div><div class="meal-stat">P</div><div class="meal-stat">C</div><div class="meal-stat">F</div>
+          </div>
+          ${d.meals ? d.meals.map(m=>`<div class="meal-row"><div class="meal-name">${m.name}</div><div class="meal-stat">${m.cal}</div><div class="meal-stat">${m.pro}g</div><div class="meal-stat">${m.carb}g</div><div class="meal-stat">${m.fat}g</div></div>`).join('') + `<div class="meal-row meal-header" style="background:#e8e8e0;"><div class="meal-name" style="font-weight:800;">Total</div><div class="meal-stat" style="font-weight:800;">${d.meals.reduce((s,m)=>s+m.cal,0)}</div><div class="meal-stat" style="font-weight:800;">${d.meals.reduce((s,m)=>s+m.pro,0)}g</div><div class="meal-stat" style="font-weight:800;">${d.meals.reduce((s,m)=>s+m.carb,0)}g</div><div class="meal-stat" style="font-weight:800;">${d.meals.reduce((s,m)=>s+m.fat,0)}g</div></div>` : '<div class="meal-row"><div style="color:#b3ab98;padding:8px;">No meal data logged</div></div>'}
+        </div>
         <div class="lbl2">Calorie Balance</div>
         <div class="two-col">
           <div class="balance">
@@ -371,6 +420,7 @@ function selectDay(n,cell){
             <div class="br hl"><span class="l">Maintenance</span><span class="v">${maintF.toLocaleString()}</span></div>
             <div class="br"><span class="l">Eaten</span><span class="v">${d.cal.toLocaleString()}</span></div>
             <div class="br fin"><span class="l">Deficit</span><span class="v">~${d.defFloor}</span></div>
+            <div class="br lost"><span class="l">Daily fat lost</span><span class="v">−${(d.defFloor/3500).toFixed(2)} lb</span></div>
             <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−${d.lbsF} lb</span></div>
           </div>
           <div class="balance">
@@ -381,12 +431,36 @@ function selectDay(n,cell){
             <div class="br hl"><span class="l">Maintenance</span><span class="v">${maintR.toLocaleString()}</span></div>
             <div class="br"><span class="l">Eaten</span><span class="v">${d.cal.toLocaleString()}</span></div>
             <div class="br fin"><span class="l">Deficit</span><span class="v">~${d.defReal}</span></div>
+            <div class="br lost"><span class="l">Daily fat lost</span><span class="v">−${(d.defReal/3500).toFixed(2)} lb</span></div>
             <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−${d.lbsR} lb</span></div>
           </div>
         </div>
         <div class="chart-note" style="margin-top:10px;">Apple Watch deficit for reference: ~${d.defWatch} cal (exercise ${d.exWatch}). "Cum. fat lost" = cumulative estimate through Day ${d.n}.</div>
       </div>
     </div>`;
+}
+
+function showExDetail(type,btn){
+  document.querySelectorAll('#exGrid .ex').forEach(b=>b.style.opacity='1');
+  btn.style.opacity='0.7';
+  const exType={ lift:'strength',run:'run',walk:'walk',row:'row',climb:'climb' }[type];
+  const icons={ strength:'🏋️',run:'🏃',walk:'🚶',row:'🚣',climb:'🪜' };
+  const names={ strength:'Weight Training',run:'Running',walk:'Walking',row:'Rowing',climb:'Stairs + Climb' };
+  const sessions=[];
+  dayData.forEach(d=>{ d.ex.forEach(e=>{ const n=e.name.toLowerCase(); const match=(type==='lift' && (n.includes('push')||n.includes('pull')||n.includes('legs')||n.includes('strength'))) || (type==='run' && n.includes('run')) || (type==='walk' && n.includes('walk')) || (type==='row' && n.includes('row')) || (type==='climb' && (n.includes('stair')||n.includes('climb'))); if(match) sessions.push({day:d.n,date:d.date,ex:e,defFloor:d.defFloor,defReal:d.defReal}); }); });
+  let html=`<div class="ex-detail"><div class="ex-detail-head"><span class="icon">${icons[exType]}</span><span>${names[exType]} · ${sessions.length} sessions</span></div><div class="ex-detail-rows">`;
+  sessions.forEach(s=>{ 
+    let total=''; let time='';
+    if(s.ex.d.includes('mi')) total=s.ex.d.match(/([\d.]+)\s*mi/)[1]+' mi'; 
+    else if(s.ex.d.includes(',000')) total=s.ex.d.match(/([\d,]+)\s*m/)[1]+' m'; 
+    else if(s.ex.d.includes('ft')) total=s.ex.d.match(/([\d,]+)\s*ft/)[1]+' ft'; 
+    if(s.ex.d.includes('h')) time=s.ex.d.match(/(\d+h\s*\d+m)/)[1]; 
+    else if(s.ex.d.includes('m')) time=s.ex.d.match(/(\d+m)/)[1];
+    const cals=`${s.defFloor}-${s.defReal} cal`;
+    html+=`<div class="ex-row"><div><span class="date">Day ${s.day} — ${s.date}</span></div><div style="display:flex;gap:16px;align-items:center;"><span style="color:#867f70;font-size:12px;min-width:50px;text-align:right;">${time||'—'}</span><span style="color:#2f8a60;font-weight:700;font-family:'DM Mono',monospace;min-width:110px;text-align:right;">${cals}</span><span style="color:#000;font-weight:700;font-family:'DM Mono',monospace;">${total}</span></div></div>`; 
+  });
+  html+=`</div></div>`;
+  document.getElementById('exDetail').innerHTML=html;
 }
 </script>
 </body>

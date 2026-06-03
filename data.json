@@ -6,6 +6,6 @@
     {"n":4,"date":"Sun May 31","dow":6,"week":0,"rest":false,"wt":null,"cal":2401,"pro":194,"carb":260,"fat":74,"exFloor":765,"exReal":971,"exWatch":1167,"defFloor":414,"defReal":620,"defWatch":816,"ex":[{"name":"Legs + Abs","d":"1h 12m"},{"name":"Walk","d":"7.0 mi · 2h 01m"}]},
     {"n":5,"date":"Mon Jun 2","dow":0,"week":1,"rest":false,"wt":177.0,"cal":2270,"pro":199,"carb":251,"fat":59,"exFloor":633,"exReal":845,"exWatch":1057,"defFloor":413,"defReal":625,"defWatch":837,"ex":[{"name":"Push","d":"1h 13m"},{"name":"HIIT Run","d":"2.83 mi · 31m"}]},
     {"n":6,"date":"Tue Jun 3","dow":1,"week":1,"rest":false,"wt":176.6,"cal":2304,"pro":189,"carb":270,"fat":58,"exFloor":723,"exReal":899,"exWatch":1096,"defFloor":484,"defReal":660,"defWatch":857,"ex":[{"name":"Pull","d":"1h 21m"},{"name":"Incline Walk","d":"2.75 mi · 2,151 ft · 55m"}]},
-    {"n":7,"date":"Wed Jun 4","dow":2,"week":1,"rest":true,"wt":175.8,"cal":2100,"pro":187,"carb":240,"fat":49,"exFloor":140,"exReal":155,"exWatch":186,"defFloor":90,"defReal":105,"defWatch":142,"ex":[{"name":"Recovery Walk","d":"2.25 mi · 42m"}]}
+    {"n":7,"date":"Wed Jun 4","dow":2,"week":1,"rest":true,"wt":170,"cal":2100,"pro":187,"carb":240,"fat":49,"exFloor":140,"exReal":155,"exWatch":186,"defFloor":90,"defReal":105,"defWatch":142,"ex":[{"name":"Recovery Walk","d":"2.25 mi · 42m"}]}
   ]
 }

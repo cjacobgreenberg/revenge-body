@@ -15,35 +15,51 @@
   h1 { font-size:32px; font-weight:800; letter-spacing:-1px; color:#1c1a16; }
   .sub { color:#867f70; font-size:15px; margin-top:4px; font-weight:500; }
   .section-label { font-size:12px; letter-spacing:2px; color:#a89a78; text-transform:uppercase; font-weight:700; margin:4px 0 16px; padding-bottom:7px; border-bottom:2px solid #efe9dc; }
-  .hero { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-top:20px; }
-  @media(max-width:760px){ .hero{ grid-template-columns:repeat(3,1fr);} }
-  @media(max-width:480px){ .hero{ grid-template-columns:repeat(2,1fr);} }
+  .hero { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:20px; }
+  .hero.hero5 { grid-template-columns:repeat(5,1fr); }
+  .hero.hero6 { grid-template-columns:repeat(6,1fr); }
+  @media(max-width:760px){ .hero.hero5{ grid-template-columns:repeat(3,1fr);} .hero.hero6{ grid-template-columns:repeat(3,1fr);} }
+  @media(max-width:480px){ .hero.hero6{ grid-template-columns:repeat(2,1fr);} }
   .stat { background:#faf8f2; border:1px solid #efe9dc; border-radius:14px; padding:16px 12px; text-align:center; }
   .stat .v { font-size:26px; font-weight:800; font-family:'DM Mono',monospace; color:#1c1a16; }
   .stat .v.green { color:#2f8a60; } .stat .v.gold { color:#a07d28; }
   .stat .l { font-size:10px; color:#9a9484; letter-spacing:1px; margin-top:4px; text-transform:uppercase; font-weight:600; }
   .stat .d { font-size:11px; color:#b3ab98; margin-top:2px; }
+  @media(max-width:640px){ .hero{ grid-template-columns:repeat(2,1fr);} }
   .chart-box { position:relative; height:320px; }
   .chart-note { font-size:13px; color:#867f70; margin-top:12px; } .chart-note b { color:#2a2722; }
   .toggle-row { display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
-  .toggle-row button { font-family:inherit; font-size:12px; font-weight:700; letter-spacing:0.5px; padding:7px 14px; border-radius:20px; border:1.5px solid #d8d2c4; background:#fff; color:#867f70; cursor:pointer; }
+  .toggle-row button { font-family:inherit; font-size:12px; font-weight:700; letter-spacing:0.5px; padding:7px 14px; border-radius:20px; border:1.5px solid #d8d2c4; background:#fff; color:#867f70; cursor:pointer; transition:all .15s; }
   .toggle-row button.active { background:#2f8a60; color:#fff; border-color:#2f8a60; }
   .toggle-row button.win-btn { padding:7px 11px; }
   .toggle-row button.win-btn.active { background:#2a2722; border-color:#2a2722; }
+  .toggle-row button.wt-tog { display:inline-flex; align-items:center; gap:7px; }
+  .toggle-row button.wt-tog.active { background:#fff; color:#3a352c; border-color:var(--c); }
+  .toggle-row button.wt-tog:not(.active) { opacity:0.5; }
+  .toggle-row button.wt-tog:not(.active) .dot { opacity:0.4; }
+  .legend-inline { display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:#867f70; margin-top:10px; }
+  .legend-inline span { display:flex; align-items:center; gap:6px; }
   .dot { width:10px; height:10px; border-radius:3px; display:inline-block; }
+  .footer { text-align:center; color:#a89a78; font-size:12px; margin-top:6px; }
+  /* calendar */
   .cal-weekhead { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:8px; }
   .cal-weekhead div { text-align:center; font-size:10px; letter-spacing:1px; color:#a89a78; font-weight:700; text-transform:uppercase; }
   .cal-row { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:8px; }
-  .cell { aspect-ratio:1/1; border-radius:12px; border:1px solid #efe9dc; background:#faf8f2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; cursor:pointer; }
-  .cell.empty { background:transparent; border:1px dashed #e8e2d4; cursor:auto; }
+  .cell { aspect-ratio:1/1; border-radius:12px; border:1px solid #efe9dc; background:#faf8f2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; position:relative; }
+  .cell.empty { background:transparent; border:1px dashed #e8e2d4; }
+  .cell.logged { cursor:pointer; transition:transform .12s, box-shadow .12s; }
+  .cell.logged:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(120,100,60,0.14); }
   .cell.logged.train { background:#eaf4ee; border-color:#bfe0cd; }
   .cell.logged.rest { background:#e8eef4; border-color:#c2d4e4; }
+  .cell.upcoming { background:#fff; border:1px dashed #d8d2c4; }
   .cell .dn { font-size:11px; font-weight:800; color:#1c1a16; }
   .cell .dd { font-size:9px; color:#9a9484; }
   .cell .cw { font-family:'DM Mono',monospace; font-size:13px; font-weight:700; color:#b8923a; margin-top:2px; }
   .cell.rest .cw { color:#9bb0c4; }
-  .cell .lblb { font-size:10.5px; color:#8a7d5c; font-weight:700; margin-top:2px; font-family:'DM Mono',monospace; }
   .cell.sel { outline:3px solid #b8923a; outline-offset:1px; }
+  .cell .pill2 { font-size:8px; letter-spacing:0.5px; text-transform:uppercase; color:#867f70; font-weight:700;}
+  .cell .lblb { font-size:10.5px; color:#8a7d5c; font-weight:700; margin-top:2px; font-family:'DM Mono',monospace; }
+  /* detail panel */
   #detail { margin-top:18px; }
   .dpanel { border:1px solid #e2ddd2; border-radius:14px; overflow:hidden; }
   .dphead { background:#2f8a60; color:#fff; padding:14px 18px; display:flex; align-items:center; gap:12px; }
@@ -56,7 +72,7 @@
   .mini { background:#faf8f2; border:1px solid #efe9dc; border-radius:10px; padding:10px; text-align:center; }
   .mini .mv { font-size:17px; font-weight:800; font-family:'DM Mono',monospace; }
   .mini .ml { font-size:9px; color:#9a9484; letter-spacing:0.5px; text-transform:uppercase; margin-top:2px; }
-  @media(max-width:640px){ .mini-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:640px){ .mini-grid{grid-template-columns:repeat(2,1fr);} .cell .dd{display:none;} }
   .lbl2 { font-size:11px; letter-spacing:1px; color:#a89a78; text-transform:uppercase; font-weight:700; margin:16px 0 6px; }
   .ex-line { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #f0ece2; font-size:13px; }
   .ex-line:last-child{border-bottom:none;} .ex-line .en{color:#3a352c; font-weight:600;} .ex-line .ed{color:#867f70;}
@@ -69,7 +85,10 @@
   .br.hl .l,.br.hl .v{color:#a07d28;font-weight:800;} .br.fin .l,.br.fin .v{color:#2f8a60;font-weight:800;font-size:15px;}
   .br.lost { border-top:1px solid #e8e2d4; } .br.lost .l{color:#a89a78;font-size:12px;} .br.lost .v{color:#8a7d5c;font-family:'DM Mono',monospace;font-weight:700;}
   .empty-detail { text-align:center; color:#a89a78; font-size:14px; padding:30px; background:#faf8f2; border-radius:14px; border:1px dashed #e2ddd2;}
+  .lbslost { margin-top:12px; padding:10px 14px; background:#f3f8f5; border:1px solid #d9ebe1; border-radius:10px; font-size:13px; color:#5f594d; }
+  .lbslost b { font-family:'DM Mono',monospace; }
   .cal-note { font-size:12px; color:#867f70; margin-top:10px; }
+  /* ex totals */
   .ex-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
   @media(max-width:640px){ .ex-grid{ grid-template-columns:repeat(2,1fr);} }
   .ex { background:#faf8f2; border:1px solid #efe9dc; border-radius:14px; padding:16px; }
@@ -77,7 +96,6 @@
   .ex .big { font-size:22px; font-weight:800; font-family:'DM Mono',monospace; color:#a07d28; margin-top:6px; }
   .ex .meta { font-size:12px; color:#867f70; margin-top:3px; }
   .ex-total { background:#2a2722; color:#fff; border:none; } .ex-total .name,.ex-total .meta{color:#d8d0c0;} .ex-total .big{color:#fff;}
-  .footer { text-align:center; color:#a89a78; font-size:12px; margin-top:6px; }
 </style>
 </head>
 <body>
@@ -87,13 +105,13 @@
     <div class="tag">Project Revenge Body · Phase 1</div>
     <h1>The Dashboard</h1>
     <div class="sub">Cut to ~15% body fat · Phase 1 ends July 24 (30th birthday)</div>
-    <div class="hero">
-      <div class="stat"><div class="v green">177</div><div class="l">Current (fasted)</div><div class="d">from 180.4 start</div></div>
-      <div class="stat"><div class="v green">−0.0</div><div class="l">Pounds Lost</div><div class="d">from 177 (Day 5)</div></div>
-      <div class="stat"><div class="v">7</div><div class="l">Days Done</div><div class="d">Phase 1</div></div>
-      <div class="stat"><div class="v gold">50</div><div class="l">Days to 7/24</div><div class="d">Phase 1 end</div></div>
-      <div class="stat"><div class="v">2,286</div><div class="l">Avg Cal</div><div class="d">~2,300 target</div></div>
-      <div class="stat"><div class="v">189g</div><div class="l">Avg Protein</div><div class="d">180g target</div></div>
+    <div class="hero hero6">
+      <div class="stat"><div class="v green">176.6</div><div class="l">Current (fasted)</div><div class="d">from 180.4 start</div></div>
+      <div class="stat"><div class="v green">−0.4</div><div class="l">Pounds Lost</div><div class="d">from 177.0 fasted (Day 5)</div></div>
+      <div class="stat"><div class="v">6</div><div class="l">Days Completed</div><div class="d">Phase 1</div></div>
+      <div class="stat"><div class="v gold">51</div><div class="l">Days to July 24</div><div class="d">Phase 1 end</div></div>
+      <div class="stat"><div class="v">2,315</div><div class="l">Avg Calories</div><div class="d">avg target ~2,300</div></div>
+      <div class="stat"><div class="v">190g</div><div class="l">Avg Protein</div><div class="d">target 180g</div></div>
     </div>
   </div>
 
@@ -106,7 +124,7 @@
       <button class="active wt-tog" data-series="check" style="--c:#b3ab98" onclick="toggleSeries(this)"><span style="color:#b3ab98;font-size:13px;">▲</span>Start checkpoint</button>
     </div>
     <div class="chart-box"><canvas id="weightChart"></canvas></div>
-    <div class="chart-note">Tap the buttons above to show/hide each line. Gray triangle is your start checkpoint (180.4). Tracking begins Day 5 (177.0 fasted). Expected lines project fat loss from logged deficits; dotted tails forecast a few days ahead.</div>
+    <div class="chart-note">Tap the buttons above to show/hide each line. The gray triangle is your <b>180.4 start checkpoint</b> (not a fasted reading). Tracking begins at Day 5 with your first fasted weight (177.0). The expected lines are anchored there and project fat loss forward from your logged deficits; dotted tails extend a few days at current pace. Your actual reading already dipped below them as residual water came off.</div>
   </div>
 
   <div class="card">
@@ -124,19 +142,19 @@
       </div>
     </div>
     <div class="chart-box"><canvas id="nutriChart"></canvas></div>
-    <div class="chart-note" id="nutriNote"><b>Calories</b> against the average target (~2,300). Daily targets flex; rest days show in blue.</div>
+    <div class="chart-note" id="nutriNote"><b>Calories</b> against the average target (~2,300). Daily targets flex (heavy days higher, rest days lower), so this is a reference band, not a hard line. Rest days show in blue.</div>
   </div>
 
   <div class="card">
     <div class="section-label">Daily Deficit — Conservative Floor vs Real (likely)</div>
     <div class="chart-box"><canvas id="deficitChart"></canvas></div>
-    <div class="chart-note">Conservative floor (diagnostic minimum) vs Real (mid-estimate). Each bar labeled with implied fat loss. Shares the 7d/14d/All window above.</div>
+    <div class="chart-note">The <b>conservative floor</b> is the diagnostic minimum; <b>real (likely)</b> is the realistic mid-estimate; each bar is labeled with the fat-loss it implies (cal ÷ 3,500). Apple Watch numbers sit above both and live in each day's detail. Both this and the nutrition chart share the <b>7d / 14d / All</b> window above so they never squish as days add up.</div>
   </div>
 
   <div class="card">
     <div class="section-label">Calendar — tap a day for full detail</div>
     <div class="cal-weekhead"><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div></div>
-    <div class="cal-weekhead"><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div></div><div class="cal-row"><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell logged train" onclick="selectDay(1,this)"><div class="dn">Day 1</div><div class="dd">May 28</div><div class="cw">2.26k</div><div class="lblb">−0.09 / −0.14 lb</div></div><div class="cell logged train" onclick="selectDay(2,this)"><div class="dn">Day 2</div><div class="dd">May 29</div><div class="cw">2.38k</div><div class="lblb">−0.24 / −0.37 lb</div></div><div class="cell logged train" onclick="selectDay(3,this)"><div class="dn">Day 3</div><div class="dd">May 30</div><div class="cw">2.29k</div><div class="lblb">−0.31 / −0.49 lb</div></div><div class="cell logged train" onclick="selectDay(4,this)"><div class="dn">Day 4</div><div class="dd">May 31</div><div class="cw">2.40k</div><div class="lblb">−0.43 / −0.67 lb</div></div></div><div class="cal-row"><div class="cell logged train" onclick="selectDay(5,this)"><div class="dn">Day 5</div><div class="dd">Jun 2</div><div class="cw">2.27k</div><div class="lblb">−0.55 / −0.84 lb</div></div><div class="cell logged train" onclick="selectDay(6,this)"><div class="dn">Day 6</div><div class="dd">Jun 3</div><div class="cw">2.30k</div><div class="lblb">−0.69 / −1.03 lb</div></div><div class="cell logged rest" onclick="selectDay(7,this)"><div class="dn">Day 7</div><div class="dd">Jun 4</div><div class="cw">2.10k</div><div class="lblb">−0.71 / −1.06 lb</div></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div></div>
+    <div id="calendar"></div>
     <div id="detail"><div class="empty-detail">Tap any logged day above to see its macros, exercise, and full calorie-balance math.</div></div>
     <div class="cal-note">Each cell shows calories and <b>cumulative</b> est. fat lost (−conservative / −real lb) through that day.</div>
   </div>
@@ -145,364 +163,231 @@
     <div class="section-label">Exercise Totals — Phase 1 to date</div>
     <div class="ex-grid">
       <div class="ex"><div class="icon">🏋️</div><div class="name">Weight Training</div><div class="big">7h 20m</div><div class="meta">6 sessions</div></div>
-      <div class="ex"><div class="icon">🏃</div><div class="name">Running</div><div class="big">8.87 mi</div><div class="meta">2 · 2h 27m</div></div>
-      <div class="ex"><div class="icon">🚶</div><div class="name">Walking</div><div class="big">12.00 mi</div><div class="meta">3 · 3h 40m</div></div>
-      <div class="ex"><div class="icon">🚣</div><div class="name">Rowing</div><div class="big">10k m</div><div class="meta">1 · 0h 00m</div></div>
-      <div class="ex ex-total"><div class="icon">⏱️</div><div class="name">Total Training Time</div><div class="big">13h 27m</div><div class="meta">12 sessions · 20.87 mi on foot</div></div>
+      <div class="ex"><div class="icon">🏃</div><div class="name">Running</div><div class="big">8.87 mi</div><div class="meta">2 runs · 1h 35m</div></div>
+      <div class="ex"><div class="icon">🚶</div><div class="name">Walking</div><div class="big">9.75 mi</div><div class="meta">2 walks · 2h 56m</div></div>
+      <div class="ex"><div class="icon">🚣</div><div class="name">Rowing</div><div class="big">10,000 m</div><div class="meta">1 row · 46m</div></div>
+      <div class="ex"><div class="icon">🪜</div><div class="name">Stairs + Climb</div><div class="big">2,271 ft</div><div class="meta">120 floors + 2,151 ft</div></div>
+      <div class="ex ex-total"><div class="icon">⏱️</div><div class="name">Total Training Time</div><div class="big">13h 7m</div><div class="meta">12 sessions · 6 days</div></div>
     </div>
+    <div class="chart-note" style="margin-top:16px;">Foot distance (run + walk): <b>18.62 mi</b> · plus 10k rowed · plus serious vertical. Set/rep detail lives in Jefit &amp; Strava.</div>
   </div>
 
-  <div class="footer">Generated from data.json · Updated through Day 7 (Wed Jun 4)</div>
+  <div class="footer">Generated by Claude · Project Revenge Body · updated through Day 6 (Tue Jun 3, 2026)</div>
 </div>
 
-
-      <div id="detail_1" style="display:none;">
-        <div class="dpanel">
-          <div class="dphead ">
-            <span class="dnum">Day 1</span><span class="dttl">Thu May 28</span>
-            <span class="dtrain">Legs (Strength) + Stairs</span>
-          </div>
-          <div class="dpbody">
-            <div class="mini-grid">
-              <div class="mini"><div class="mv" style="color:#a07d28">2,264</div><div class="ml">Calories</div></div>
-              <div class="mini"><div class="mv" style="color:#2f8a60">170g</div><div class="ml">Protein</div></div>
-              <div class="mini"><div class="mv" style="color:#3f6fc4">233g</div><div class="ml">Carbs</div></div>
-              <div class="mini"><div class="mv" style="color:#cf7a3a">79g</div><div class="ml">Fat</div></div>
-            </div>
-            <div class="lbl2">Exercise</div>
-            <div class="ex-line"><span class="en">Legs (Strength)</span><span class="ed">1h 00m</span></div><div class="ex-line"><span class="en">Stairs</span><span class="ed">30m · 120 floors</span></div>
-            <div class="lbl2">Calorie Balance</div>
-            <div class="two-col">
-              <div class="balance">
-                <div class="bt">Conservative Floor</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">535</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,585</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,264</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~321</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.09 lb</span></div>
-              </div>
-              <div class="balance">
-                <div class="bt">Real (likely)</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">714</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,764</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,264</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~500</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.14 lb</span></div>
-              </div>
-            </div>
-            <div class="chart-note" style="margin-top:10px;">Apple Watch deficit for reference: ~686 cal.</div>
-          </div>
-        </div>
-      </div>
-      <div id="detail_2" style="display:none;">
-        <div class="dpanel">
-          <div class="dphead ">
-            <span class="dnum">Day 2</span><span class="dttl">Fri May 29</span>
-            <span class="dtrain">Push + Run</span>
-          </div>
-          <div class="dpbody">
-            <div class="mini-grid">
-              <div class="mini"><div class="mv" style="color:#a07d28">2,376</div><div class="ml">Calories</div></div>
-              <div class="mini"><div class="mv" style="color:#2f8a60">181g</div><div class="ml">Protein</div></div>
-              <div class="mini"><div class="mv" style="color:#3f6fc4">230g</div><div class="ml">Carbs</div></div>
-              <div class="mini"><div class="mv" style="color:#cf7a3a">87g</div><div class="ml">Fat</div></div>
-            </div>
-            <div class="lbl2">Exercise</div>
-            <div class="ex-line"><span class="en">Push</span><span class="ed">1h 20m</span></div><div class="ex-line"><span class="en">Run</span><span class="ed">6.04 mi · 1h 04m</span></div>
-            <div class="lbl2">Calorie Balance</div>
-            <div class="two-col">
-              <div class="balance">
-                <div class="bt">Conservative Floor</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">850</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,900</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,376</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~524</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.24 lb</span></div>
-              </div>
-              <div class="balance">
-                <div class="bt">Real (likely)</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">1126</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">3,176</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,376</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~800</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.37 lb</span></div>
-              </div>
-            </div>
-            <div class="chart-note" style="margin-top:10px;">Apple Watch deficit for reference: ~1072 cal.</div>
-          </div>
-        </div>
-      </div>
-      <div id="detail_3" style="display:none;">
-        <div class="dpanel">
-          <div class="dphead ">
-            <span class="dnum">Day 3</span><span class="dttl">Sat May 30</span>
-            <span class="dtrain">Pull + Row</span>
-          </div>
-          <div class="dpbody">
-            <div class="mini-grid">
-              <div class="mini"><div class="mv" style="color:#a07d28">2,289</div><div class="ml">Calories</div></div>
-              <div class="mini"><div class="mv" style="color:#2f8a60">201g</div><div class="ml">Protein</div></div>
-              <div class="mini"><div class="mv" style="color:#3f6fc4">244g</div><div class="ml">Carbs</div></div>
-              <div class="mini"><div class="mv" style="color:#cf7a3a">63g</div><div class="ml">Fat</div></div>
-            </div>
-            <div class="lbl2">Exercise</div>
-            <div class="ex-line"><span class="en">Pull</span><span class="ed">1h 14m</span></div><div class="ex-line"><span class="en">Row</span><span class="ed">10,000 m · 46m</span></div>
-            <div class="lbl2">Calorie Balance</div>
-            <div class="two-col">
-              <div class="balance">
-                <div class="bt">Conservative Floor</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">485</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,535</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,289</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~246</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.31 lb</span></div>
-              </div>
-              <div class="balance">
-                <div class="bt">Real (likely)</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">649</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,699</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,289</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~410</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.49 lb</span></div>
-              </div>
-            </div>
-            <div class="chart-note" style="margin-top:10px;">Apple Watch deficit for reference: ~576 cal.</div>
-          </div>
-        </div>
-      </div>
-      <div id="detail_4" style="display:none;">
-        <div class="dpanel">
-          <div class="dphead ">
-            <span class="dnum">Day 4</span><span class="dttl">Sun May 31</span>
-            <span class="dtrain">Legs + Abs + Walk</span>
-          </div>
-          <div class="dpbody">
-            <div class="mini-grid">
-              <div class="mini"><div class="mv" style="color:#a07d28">2,401</div><div class="ml">Calories</div></div>
-              <div class="mini"><div class="mv" style="color:#2f8a60">194g</div><div class="ml">Protein</div></div>
-              <div class="mini"><div class="mv" style="color:#3f6fc4">260g</div><div class="ml">Carbs</div></div>
-              <div class="mini"><div class="mv" style="color:#cf7a3a">74g</div><div class="ml">Fat</div></div>
-            </div>
-            <div class="lbl2">Exercise</div>
-            <div class="ex-line"><span class="en">Legs + Abs</span><span class="ed">1h 12m</span></div><div class="ex-line"><span class="en">Walk</span><span class="ed">7.0 mi · 2h 01m</span></div>
-            <div class="lbl2">Calorie Balance</div>
-            <div class="two-col">
-              <div class="balance">
-                <div class="bt">Conservative Floor</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">765</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,815</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,401</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~414</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.43 lb</span></div>
-              </div>
-              <div class="balance">
-                <div class="bt">Real (likely)</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">971</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">3,021</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,401</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~620</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.67 lb</span></div>
-              </div>
-            </div>
-            <div class="chart-note" style="margin-top:10px;">Apple Watch deficit for reference: ~816 cal.</div>
-          </div>
-        </div>
-      </div>
-      <div id="detail_5" style="display:none;">
-        <div class="dpanel">
-          <div class="dphead ">
-            <span class="dnum">Day 5</span><span class="dttl">Mon Jun 2</span>
-            <span class="dtrain">Push + HIIT Run</span>
-          </div>
-          <div class="dpbody">
-            <div class="mini-grid">
-              <div class="mini"><div class="mv" style="color:#a07d28">2,270</div><div class="ml">Calories</div></div>
-              <div class="mini"><div class="mv" style="color:#2f8a60">199g</div><div class="ml">Protein</div></div>
-              <div class="mini"><div class="mv" style="color:#3f6fc4">251g</div><div class="ml">Carbs</div></div>
-              <div class="mini"><div class="mv" style="color:#cf7a3a">59g</div><div class="ml">Fat</div></div>
-            </div>
-            <div class="lbl2">Exercise</div>
-            <div class="ex-line"><span class="en">Push</span><span class="ed">1h 13m</span></div><div class="ex-line"><span class="en">HIIT Run</span><span class="ed">2.83 mi · 31m</span></div>
-            <div class="lbl2">Calorie Balance</div>
-            <div class="two-col">
-              <div class="balance">
-                <div class="bt">Conservative Floor</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">633</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,683</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,270</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~413</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.55 lb</span></div>
-              </div>
-              <div class="balance">
-                <div class="bt">Real (likely)</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">845</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,895</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,270</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~625</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.84 lb</span></div>
-              </div>
-            </div>
-            <div class="chart-note" style="margin-top:10px;">Apple Watch deficit for reference: ~837 cal.</div>
-          </div>
-        </div>
-      </div>
-      <div id="detail_6" style="display:none;">
-        <div class="dpanel">
-          <div class="dphead ">
-            <span class="dnum">Day 6</span><span class="dttl">Tue Jun 3</span>
-            <span class="dtrain">Pull + Incline Walk</span>
-          </div>
-          <div class="dpbody">
-            <div class="mini-grid">
-              <div class="mini"><div class="mv" style="color:#a07d28">2,304</div><div class="ml">Calories</div></div>
-              <div class="mini"><div class="mv" style="color:#2f8a60">189g</div><div class="ml">Protein</div></div>
-              <div class="mini"><div class="mv" style="color:#3f6fc4">270g</div><div class="ml">Carbs</div></div>
-              <div class="mini"><div class="mv" style="color:#cf7a3a">58g</div><div class="ml">Fat</div></div>
-            </div>
-            <div class="lbl2">Exercise</div>
-            <div class="ex-line"><span class="en">Pull</span><span class="ed">1h 21m</span></div><div class="ex-line"><span class="en">Incline Walk</span><span class="ed">2.75 mi · 2,151 ft · 55m</span></div>
-            <div class="lbl2">Calorie Balance</div>
-            <div class="two-col">
-              <div class="balance">
-                <div class="bt">Conservative Floor</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">723</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,773</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,304</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~484</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.69 lb</span></div>
-              </div>
-              <div class="balance">
-                <div class="bt">Real (likely)</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">899</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,949</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,304</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~660</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−1.03 lb</span></div>
-              </div>
-            </div>
-            <div class="chart-note" style="margin-top:10px;">Apple Watch deficit for reference: ~857 cal.</div>
-          </div>
-        </div>
-      </div>
-      <div id="detail_7" style="display:none;">
-        <div class="dpanel">
-          <div class="dphead rest">
-            <span class="dnum">Day 7</span><span class="dttl">Wed Jun 4</span>
-            <span class="dtrain">Recovery Walk</span>
-          </div>
-          <div class="dpbody">
-            <div class="mini-grid">
-              <div class="mini"><div class="mv" style="color:#a07d28">2,100</div><div class="ml">Calories</div></div>
-              <div class="mini"><div class="mv" style="color:#2f8a60">187g</div><div class="ml">Protein</div></div>
-              <div class="mini"><div class="mv" style="color:#3f6fc4">240g</div><div class="ml">Carbs</div></div>
-              <div class="mini"><div class="mv" style="color:#cf7a3a">49g</div><div class="ml">Fat</div></div>
-            </div>
-            <div class="lbl2">Exercise</div>
-            <div class="ex-line"><span class="en">Recovery Walk</span><span class="ed">2.25 mi · 42m</span></div>
-            <div class="lbl2">Calorie Balance</div>
-            <div class="two-col">
-              <div class="balance">
-                <div class="bt">Conservative Floor</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">140</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,190</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,100</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~90</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−0.71 lb</span></div>
-              </div>
-              <div class="balance">
-                <div class="bt">Real (likely)</div>
-                <div class="br"><span class="l">BMR</span><span class="v">1,800</span></div>
-                <div class="br"><span class="l">+ NEAT</span><span class="v">250</span></div>
-                <div class="br"><span class="l">+ Exercise</span><span class="v">155</span></div>
-                <div class="br hl"><span class="l">Maintenance</span><span class="v">2,205</span></div>
-                <div class="br"><span class="l">Eaten</span><span class="v">2,100</span></div>
-                <div class="br fin"><span class="l">Deficit</span><span class="v">~105</span></div>
-                <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−1.06 lb</span></div>
-              </div>
-            </div>
-            <div class="chart-note" style="margin-top:10px;">Apple Watch deficit for reference: ~142 cal.</div>
-          </div>
-        </div>
-      </div>
-
 <script>
-const dayData = [{"n":1,"date":"Thu May 28","dow":3,"week":0,"rest":false,"wt":null,"cal":2264,"pro":170,"carb":233,"fat":79,"exFloor":535,"exReal":714,"exWatch":900,"defFloor":321,"defReal":500,"defWatch":686,"ex":[{"name":"Legs (Strength)","d":"1h 00m"},{"name":"Stairs","d":"30m · 120 floors"}],"lbsF":0.09,"lbsR":0.14},{"n":2,"date":"Fri May 29","dow":4,"week":0,"rest":false,"wt":null,"cal":2376,"pro":181,"carb":230,"fat":87,"exFloor":850,"exReal":1126,"exWatch":1398,"defFloor":524,"defReal":800,"defWatch":1072,"ex":[{"name":"Push","d":"1h 20m"},{"name":"Run","d":"6.04 mi · 1h 04m"}],"lbsF":0.24,"lbsR":0.37},{"n":3,"date":"Sat May 30","dow":5,"week":0,"rest":false,"wt":null,"cal":2289,"pro":201,"carb":244,"fat":63,"exFloor":485,"exReal":649,"exWatch":815,"defFloor":246,"defReal":410,"defWatch":576,"ex":[{"name":"Pull","d":"1h 14m"},{"name":"Row","d":"10,000 m · 46m"}],"lbsF":0.31,"lbsR":0.49},{"n":4,"date":"Sun May 31","dow":6,"week":0,"rest":false,"wt":null,"cal":2401,"pro":194,"carb":260,"fat":74,"exFloor":765,"exReal":971,"exWatch":1167,"defFloor":414,"defReal":620,"defWatch":816,"ex":[{"name":"Legs + Abs","d":"1h 12m"},{"name":"Walk","d":"7.0 mi · 2h 01m"}],"lbsF":0.43,"lbsR":0.67},{"n":5,"date":"Mon Jun 2","dow":0,"week":1,"rest":false,"wt":177,"cal":2270,"pro":199,"carb":251,"fat":59,"exFloor":633,"exReal":845,"exWatch":1057,"defFloor":413,"defReal":625,"defWatch":837,"ex":[{"name":"Push","d":"1h 13m"},{"name":"HIIT Run","d":"2.83 mi · 31m"}],"lbsF":0.55,"lbsR":0.84},{"n":6,"date":"Tue Jun 3","dow":1,"week":1,"rest":false,"wt":176.6,"cal":2304,"pro":189,"carb":270,"fat":58,"exFloor":723,"exReal":899,"exWatch":1096,"defFloor":484,"defReal":660,"defWatch":857,"ex":[{"name":"Pull","d":"1h 21m"},{"name":"Incline Walk","d":"2.75 mi · 2,151 ft · 55m"}],"lbsF":0.69,"lbsR":1.03},{"n":7,"date":"Wed Jun 4","dow":2,"week":1,"rest":true,"wt":175.6,"cal":2100,"pro":187,"carb":240,"fat":49,"exFloor":140,"exReal":155,"exWatch":186,"defFloor":90,"defReal":105,"defWatch":142,"ex":[{"name":"Recovery Walk","d":"2.25 mi · 42m"}],"lbsF":0.71,"lbsR":1.06}];
+const BMR=1800, NEAT=250, BASE=BMR+NEAT;
+// dow: 0=Mon..6=Sun. isRest flag for rest days (color). week index for calendar rows.
+const dayData = [
+  { n:1, date:'Thu May 28', dow:3, week:0, rest:false, cal:2264, pro:170, carb:233, fat:79, exFloor:535, exReal:714, exWatch:900, defFloor:321, defReal:500, defWatch:686, ex:[{name:'Legs (Strength)',d:'1h 00m'},{name:'Stairs',d:'30m · 120 floors'}] },
+  { n:2, date:'Fri May 29', dow:4, week:0, rest:false, cal:2376, pro:181, carb:230, fat:87, exFloor:850, exReal:1126, exWatch:1398, defFloor:524, defReal:800, defWatch:1072, ex:[{name:'Push',d:'1h 20m'},{name:'Run',d:'6.04 mi · 1h 04m'}] },
+  { n:3, date:'Sat May 30', dow:5, week:0, rest:false, cal:2289, pro:201, carb:244, fat:63, exFloor:485, exReal:649, exWatch:815, defFloor:246, defReal:410, defWatch:576, ex:[{name:'Pull',d:'1h 14m'},{name:'Row',d:'10,000 m · 46m'}] },
+  { n:4, date:'Sun May 31', dow:6, week:0, rest:false, cal:2401, pro:194, carb:260, fat:74, exFloor:765, exReal:971, exWatch:1167, defFloor:414, defReal:620, defWatch:816, ex:[{name:'Legs + Abs',d:'1h 12m'},{name:'Walk',d:'7.0 mi · 2h 01m'}] },
+  { n:5, date:'Mon Jun 2', dow:0, week:1, rest:false, cal:2270, pro:199, carb:251, fat:59, exFloor:633, exReal:845, exWatch:1057, defFloor:413, defReal:625, defWatch:837, ex:[{name:'Push',d:'1h 13m'},{name:'HIIT Run',d:'2.83 mi · 31m'}] },
+  { n:6, date:'Tue Jun 3', dow:1, week:1, rest:false, cal:2289, pro:192, carb:263, fat:59, exFloor:723, exReal:899, exWatch:1096, defFloor:484, defReal:660, defWatch:857, ex:[{name:'Pull',d:'1h 21m'},{name:'Incline Walk',d:'2.75 mi · 2,151 ft · 55m'}] },
+];
+// upcoming planned (no data yet) — shown faint in calendar
+const upcoming = [
+  { dow:2, week:1, label:'Rest' },
+  { dow:3, week:1, label:'Legs' },
+];
+
+const labels = dayData.map(d=>'Day '+d.n);
 const gold='#b8923a', green='#2f8a60', blue='#3f6fc4', orange='#cf7a3a', restc='#9bb0c4', gridc='#efe9dc', tickc='#9a9484';
 Chart.defaults.font.family="'DM Sans',sans-serif"; Chart.defaults.font.size=12; Chart.defaults.color=tickc;
 
+// rolling window for the bar charts (nutrition + deficit). null = All.
 let winN = 7;
 function windowed(arr){ return (winN===null || arr.length<=winN) ? arr : arr.slice(-winN); }
 function winDays(){ return windowed(dayData); }
 function winLabels(){ return winDays().map(d=>'Day '+d.n); }
 
-// Weight chart
-const expF = [{"x":5,"y":177},{"x":5,"y":176.88},{"x":6,"y":176.74},{"x":7,"y":176.72}], expR = [{"x":5,"y":177},{"x":5,"y":176.82},{"x":6,"y":176.63},{"x":7,"y":176.6}];
-const foreF = [{"x":7,"y":176.72},{"x":12,"y":176.25}], foreR = [{"x":7,"y":176.6},{"x":12,"y":175.94}];
-const actual = [{"x":5,"y":177},{"x":6,"y":176.6},{"x":7,"y":175.6}], checkpoint = [{"x":4,"y":180.4}];
-const xTicks = [4,5,6,7,12];
-const xTickLabels = {"4":"Start","5":"D5","6":"D6","7":"D7","12":"+5d"};
+// ---- WEIGHT: actual vs expected, with short forecast a few days out ----
+const START=180.4;
+const ANCHOR_DAY=5, ANCHOR_WT=177.0;   // expected lines start from first fasted reading
+// build expected from the anchor day forward, using deficits logged on/after the anchor day
+let cumF=0, cumR=0; const expF=[{x:ANCHOR_DAY,y:ANCHOR_WT}], expR=[{x:ANCHOR_DAY,y:ANCHOR_WT}];
+dayData.filter(d=>d.n>=ANCHOR_DAY).forEach(d=>{ cumF+=d.defFloor; cumR+=d.defReal; expF.push({x:d.n,y:+(ANCHOR_WT-cumF/3500).toFixed(2)}); expR.push({x:d.n,y:+(ANCHOR_WT-cumR/3500).toFixed(2)}); });
+const lastN=dayData.length;
+const FCAST=lastN+5;            // forecast just a few days past the last logged day
+const nAnchored=dayData.filter(d=>d.n>=ANCHOR_DAY).length;
+const avgF=cumF/nAnchored, avgR=cumR/nAnchored;
+const foreF=[{x:lastN,y:expF[expF.length-1].y},{x:FCAST,y:+(expF[expF.length-1].y-avgF*5/3500).toFixed(2)}];
+const foreR=[{x:lastN,y:expR[expR.length-1].y},{x:FCAST,y:+(expR[expR.length-1].y-avgR*5/3500).toFixed(2)}];
+const actual=[{x:5,y:177.0},{x:6,y:176.6}];
+const checkpoint=[{x:4,y:180.4}];
+const xTicks=[4,5,6,FCAST];
+const xTickLabels={4:'Start',5:'D5',6:'D6'}; xTickLabels[FCAST]='+'+(FCAST-lastN)+'d';
 
-const weightChart=new Chart(document.getElementById('weightChart'),{ type:'line',
+const weightChart=new Chart(document.getElementById('weightChart'),{
+  type:'line',
   data:{ datasets:[
-    { label:'Actual', data:actual, borderColor:green, backgroundColor:green, pointRadius:6, pointHoverRadius:8, borderWidth:3, tension:0.2 },
-    { label:'Checkpoint', data:checkpoint, borderColor:'#b3ab98', backgroundColor:'#b3ab98', pointStyle:'triangle', pointRadius:9, showLine:false },
+    { label:'Actual (fasted)', data:actual, borderColor:green, backgroundColor:green, pointRadius:6, pointHoverRadius:8, borderWidth:3, tension:0.2 },
+    { label:'Checkpoint (start)', data:checkpoint, borderColor:'#b3ab98', backgroundColor:'#b3ab98', pointStyle:'triangle', pointRadius:9, pointHoverRadius:11, showLine:false },
     { label:'Expected — Conservative', data:expF, borderColor:gold, backgroundColor:gold, pointRadius:3, borderWidth:2.5, tension:0.1 },
-    { label:'_fF', data:foreF, borderColor:gold, borderDash:[5,5], pointRadius:0, borderWidth:2 },
+    { label:'_foreF', data:foreF, borderColor:gold, borderDash:[5,5], pointRadius:0, borderWidth:2 },
     { label:'Expected — Real', data:expR, borderColor:blue, backgroundColor:blue, pointRadius:3, borderWidth:2.5, tension:0.1 },
-    { label:'_fR', data:foreR, borderColor:blue, borderDash:[5,5], pointRadius:0, borderWidth:2 },
+    { label:'_foreR', data:foreR, borderColor:blue, borderDash:[5,5], pointRadius:0, borderWidth:2 },
   ]},
-  options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{ filter:(i)=>!i.dataset.label.startsWith('_'), callbacks:{ title:(items)=>{const x=items[0].parsed.x; return x===4?'Start':x===12?'+5d':'Day '+x;}, label:(c)=>c.dataset.label+': '+c.parsed.y+' lb' } } }, scales:{ y:{ min:174, max:181, grid:{color:gridc} }, x:{ type:'linear', min:4, max:12+0.5, afterBuildTicks:axis=>{ axis.ticks=xTicks.map(v=>({value:v})); }, ticks:{ callback:v=>xTickLabels[v]??'', maxRotation:0 }, grid:{display:false} } } }
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false},
+      tooltip:{ filter:(i)=>!i.dataset.label.startsWith('_'), callbacks:{ title:(items)=>{const x=items[0].parsed.x; return x===4?'Start checkpoint':x===FCAST?('+'+(FCAST-lastN)+' days'):'Day '+x;}, label:(c)=>c.dataset.label+': '+c.parsed.y+' lb' } } },
+    scales:{
+      y:{ min:174, max:181, grid:{color:gridc}, ticks:{callback:v=>v+' lb'} },
+      x:{ type:'linear', min:4, max:FCAST+0.5,
+          afterBuildTicks:axis=>{ axis.ticks=xTicks.map(v=>({value:v})); },
+          ticks:{ callback:v=>xTickLabels[v]??'', maxRotation:0 },
+          grid:{display:false} }
+    } }
 });
+// dataset index map: 0 Actual, 1 Checkpoint, 2 Cons, 3 ConsForecast, 4 Real, 5 RealForecast
 const seriesMap={ actual:[0], check:[1], cons:[2,3], real:[4,5] };
-function toggleSeries(btn){ btn.classList.toggle('active'); const on=btn.classList.contains('active'); seriesMap[btn.dataset.series].forEach(i=>weightChart.setDatasetVisibility(i,on)); weightChart.update(); }
-
-// Nutrition
-let nutriChart, nutriMode='cal';
-function buildNutri(mode){ nutriMode=mode; if(nutriChart)nutriChart.destroy(); const dd=winDays(); let datasets,target=null;
-  if(mode==='cal'){ datasets=[{label:'Calories',data:dd.map(d=>d.cal),backgroundColor:dd.map(d=>d.rest?restc:gold),borderRadius:6}]; target=2300; }
-  else if(mode==='pro'){ datasets=[{label:'Protein',data:dd.map(d=>d.pro),backgroundColor:green,borderRadius:6}]; target=180; }
-  else { datasets=[{label:'Carbs',data:dd.map(d=>d.carb),backgroundColor:blue,borderRadius:6},{label:'Fat',data:dd.map(d=>d.fat),backgroundColor:orange,borderRadius:6}]; }
-  const ann={id:'t',afterDraw:(ch)=>{ if(!target)return; const {ctx,chartArea:{left,right},scales:{y}}=ch; const yy=y.getPixelForValue(target); ctx.save(); ctx.strokeStyle='#bdb295'; ctx.setLineDash([4,5]); ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(left,yy); ctx.lineTo(right,yy); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle='#a89a78'; ctx.font='600 11px DM Sans'; ctx.fillText((mode==='cal'?'avg target ~':'target ')+target, left+6, yy-6); ctx.restore(); }};
-  nutriChart=new Chart(document.getElementById('nutriChart'),{ type:'bar', data:{labels:winLabels(),datasets}, plugins:[ann], options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{display:mode==='macro',position:'top'}}, scales:{ y:(mode==='cal'?{min:1800,max:2600,grid:{color:gridc},ticks:{stepSize:100}}:{beginAtZero:true,grid:{color:gridc}}), x:{grid:{display:false}} } } });
+function toggleSeries(btn){
+  btn.classList.toggle('active');
+  const on=btn.classList.contains('active');
+  seriesMap[btn.dataset.series].forEach(i=>{ weightChart.setDatasetVisibility(i, on); });
+  weightChart.update();
 }
-function showNutri(mode,btn){ btn.parentNode.querySelectorAll('button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); buildNutri(mode); const n={cal:'<b>Calories</b> against ~2,300 avg target.',pro:'<b>Protein</b> vs 180g floor.',macro:'<b>Carbs &amp; fat</b> by day.'}; document.getElementById('nutriNote').innerHTML=n[mode]; }
+
+// ---- NUTRITION ----
+let nutriChart, nutriMode='cal';
+function buildNutri(mode){
+  nutriMode=mode;
+  if(nutriChart) nutriChart.destroy();
+  const dd=winDays();
+  let datasets, target=null;
+  if(mode==='cal'){ datasets=[{label:'Calories',data:dd.map(d=>d.cal),backgroundColor:dd.map(d=>d.rest?restc:gold),borderRadius:6}]; target=2300; }
+  else if(mode==='pro'){ datasets=[{label:'Protein (g)',data:dd.map(d=>d.pro),backgroundColor:green,borderRadius:6}]; target=180; }
+  else { datasets=[{label:'Carbs (g)',data:dd.map(d=>d.carb),backgroundColor:blue,borderRadius:6},{label:'Fat (g)',data:dd.map(d=>d.fat),backgroundColor:orange,borderRadius:6}]; }
+  const ann={id:'t',afterDraw:(ch)=>{ if(!target)return; const {ctx,chartArea:{left,right},scales:{y}}=ch; const yy=y.getPixelForValue(target); ctx.save(); ctx.strokeStyle='#bdb295'; ctx.setLineDash([4,5]); ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(left,yy); ctx.lineTo(right,yy); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle='#a89a78'; ctx.font='600 11px DM Sans'; ctx.fillText((mode==='cal'?'avg target ~':'target ')+target, left+6, yy-6); ctx.restore(); }};
+  nutriChart=new Chart(document.getElementById('nutriChart'),{ type:'bar', data:{labels:winLabels(),datasets}, plugins:[ann],
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{display:mode==='macro',position:'top',labels:{usePointStyle:true,pointStyleWidth:10}}}, scales:{ y:(mode==='cal'?{min:1800,max:2600,grid:{color:gridc},ticks:{stepSize:100,callback:v=>v.toLocaleString()}}:{beginAtZero:true,grid:{color:gridc}}), x:{grid:{display:false}} } } });
+}
+function showNutri(mode,btn){ btn.parentNode.querySelectorAll('button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); buildNutri(mode);
+  const n={cal:'<b>Calories</b> against the average target (~2,300). Daily targets flex (heavy days higher, rest days lower), so this is a reference band, not a hard line. Rest days show in blue.',pro:'<b>Protein</b> vs the 180g floor. Above target every single day — the key driver of muscle preservation.',macro:'<b>Carbs &amp; fat</b> by day. Carbs stay high to fuel training; fat is the lever for the deficit.'};
+  document.getElementById('nutriNote').innerHTML=n[mode]; }
 buildNutri('cal');
 
-// Deficit
-const lbsLabels={ id:'lbsLabels', afterDatasetsDraw:(ch)=>{ const {ctx}=ch; ch.data.datasets.forEach((ds,di)=>{ ch.getDatasetMeta(di).data.forEach((bar,i)=>{ const cal=ds.data[i]; if(!cal)return; ctx.save(); ctx.fillStyle=di===0?'#8a7d5c':'#236b4c'; ctx.font='700 10px DM Mono'; ctx.textAlign='center'; ctx.fillText('−'+(cal/3500).toFixed(2), bar.x, bar.y-6); ctx.restore(); }); }); }};
+// ---- DEFICIT (with lbs labels on each bar) ----
+const lbsLabels={ id:'lbsLabels', afterDatasetsDraw:(ch)=>{
+  const {ctx}=ch;
+  ch.data.datasets.forEach((ds,di)=>{
+    const meta=ch.getDatasetMeta(di);
+    meta.data.forEach((bar,i)=>{
+      const cal=ds.data[i]; if(cal==null) return;
+      const lb=(cal/3500).toFixed(2);
+      ctx.save();
+      ctx.fillStyle = di===0 ? '#8a7d5c' : '#236b4c';
+      ctx.font='700 10px DM Mono, monospace';
+      ctx.textAlign='center';
+      ctx.fillText('−'+lb+' lb', bar.x, bar.y-6);
+      ctx.restore();
+    });
+  });
+}};
 let deficitChart;
-function buildDeficit(){ if(deficitChart)deficitChart.destroy(); const dd=winDays(); deficitChart=new Chart(document.getElementById('deficitChart'),{ type:'bar', data:{ labels:winLabels(), datasets:[ {label:'Floor',data:dd.map(d=>d.defFloor),backgroundColor:'#cdbd8e',borderRadius:6}, {label:'Real',data:dd.map(d=>d.defReal),backgroundColor:green,borderRadius:6} ]}, plugins:[lbsLabels], options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{position:'top'},tooltip:{callbacks:{label:(c)=>c.dataset.label+': '+c.parsed.y+' cal'}}}, scales:{ y:{beginAtZero:true,max:1200,grid:{color:gridc}}, x:{grid:{display:false}} } } }); }
+function buildDeficit(){
+  if(deficitChart) deficitChart.destroy();
+  const dd=winDays();
+  deficitChart=new Chart(document.getElementById('deficitChart'),{
+    type:'bar',
+    data:{ labels:winLabels(), datasets:[
+      {label:'Conservative Floor',data:dd.map(d=>d.defFloor),backgroundColor:'#cdbd8e',borderRadius:6},
+      {label:'Real (likely)',data:dd.map(d=>d.defReal),backgroundColor:green,borderRadius:6}
+    ]},
+    plugins:[lbsLabels],
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyleWidth:10}},tooltip:{callbacks:{label:(c)=>c.dataset.label+': ~'+c.parsed.y+' cal  (−'+(c.parsed.y/3500).toFixed(2)+' lb)'}}},
+      scales:{ y:{beginAtZero:true,max:1200,grid:{color:gridc},ticks:{callback:v=>v+' cal'}}, x:{grid:{display:false}} } }
+  });
+}
 buildDeficit();
-function setWindow(w,btn){ winN=(w==='all')?null:w; document.querySelectorAll('#winToggle .win-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); buildNutri(nutriMode); buildDeficit(); }
 
-// Calendar / Detail
-function selectDay(n,cell){ document.querySelectorAll('.cell').forEach(c=>c.classList.remove('sel')); cell.classList.add('sel'); document.querySelectorAll('[id^="detail_"]').forEach(d=>d.style.display='none'); document.getElementById('detail_'+n).style.display='block'; document.getElementById('detail').scrollIntoView({behavior:'smooth',block:'nearest'}); }
+// shared window control for nutrition + deficit bar charts
+function setWindow(w,btn){
+  winN = (w==='all') ? null : w;
+  document.querySelectorAll('#winToggle .win-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildNutri(nutriMode);
+  buildDeficit();
+}
+
+// compute cumulative est. lbs lost (conservative + real) through each day
+(function(){ let cf=0, cr=0; dayData.forEach(d=>{ cf+=d.defFloor; cr+=d.defReal; d.lbsF=+(cf/3500).toFixed(2); d.lbsR=+(cr/3500).toFixed(2); }); })();
+
+// ---- CALENDAR ----
+const cal=document.getElementById('calendar');
+const weeks=Math.max(...dayData.map(d=>d.week), ...upcoming.map(u=>u.week))+1;
+for(let w=0; w<weeks; w++){
+  const row=document.createElement('div'); row.className='cal-row';
+  for(let dow=0; dow<7; dow++){
+    const d=dayData.find(x=>x.week===w && x.dow===dow);
+    const u=upcoming.find(x=>x.week===w && x.dow===dow);
+    const cell=document.createElement('div');
+    if(d){
+      cell.className='cell logged '+(d.rest?'rest':'train');
+      cell.dataset.n=d.n;
+      cell.innerHTML=`<div class="dn">Day ${d.n}</div><div class="dd">${d.date.split(' ').slice(1).join(' ')}</div><div class="cw">${(d.cal/1000).toFixed(2)}k</div><div class="lblb">−${d.lbsF} / −${d.lbsR} lb</div>`;
+      cell.onclick=()=>selectDay(d.n,cell);
+    } else if(u){
+      cell.className='cell upcoming';
+      cell.innerHTML=`<div class="dd" style="font-size:10px;">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][dow]}</div><div class="pill2" style="color:#b3ab98;">${u.label}</div>`;
+    } else {
+      cell.className='cell empty';
+    }
+    row.appendChild(cell);
+  }
+  cal.appendChild(row);
+}
+
+function selectDay(n,cell){
+  document.querySelectorAll('.cell').forEach(c=>c.classList.remove('sel'));
+  cell.classList.add('sel');
+  const d=dayData.find(x=>x.n===n);
+  const maintF=BASE+d.exFloor, maintR=BASE+d.exReal;
+  const exLines=d.ex.map(e=>`<div class="ex-line"><span class="en">${e.name}</span><span class="ed">${e.d}</span></div>`).join('');
+  document.getElementById('detail').innerHTML=`
+    <div class="dpanel">
+      <div class="dphead ${d.rest?'rest':''}">
+        <span class="dnum">Day ${d.n}</span><span class="dttl">${d.date}</span>
+        <span class="dtrain">${d.ex.map(e=>e.name).join(' + ')}</span>
+      </div>
+      <div class="dpbody">
+        <div class="mini-grid">
+          <div class="mini"><div class="mv" style="color:#a07d28">${d.cal.toLocaleString()}</div><div class="ml">Calories</div></div>
+          <div class="mini"><div class="mv" style="color:#2f8a60">${d.pro}g</div><div class="ml">Protein</div></div>
+          <div class="mini"><div class="mv" style="color:#3f6fc4">${d.carb}g</div><div class="ml">Carbs</div></div>
+          <div class="mini"><div class="mv" style="color:#cf7a3a">${d.fat}g</div><div class="ml">Fat</div></div>
+        </div>
+        <div class="lbl2">Exercise</div>
+        ${exLines}
+        <div class="lbl2">Calorie Balance</div>
+        <div class="two-col">
+          <div class="balance">
+            <div class="bt">Conservative Floor</div>
+            <div class="br"><span class="l">BMR</span><span class="v">${BMR.toLocaleString()}</span></div>
+            <div class="br"><span class="l">+ NEAT</span><span class="v">${NEAT}</span></div>
+            <div class="br"><span class="l">+ Exercise</span><span class="v">${d.exFloor}</span></div>
+            <div class="br hl"><span class="l">Maintenance</span><span class="v">${maintF.toLocaleString()}</span></div>
+            <div class="br"><span class="l">Eaten</span><span class="v">${d.cal.toLocaleString()}</span></div>
+            <div class="br fin"><span class="l">Deficit</span><span class="v">~${d.defFloor}</span></div>
+            <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−${d.lbsF} lb</span></div>
+          </div>
+          <div class="balance">
+            <div class="bt">Real (likely)</div>
+            <div class="br"><span class="l">BMR</span><span class="v">${BMR.toLocaleString()}</span></div>
+            <div class="br"><span class="l">+ NEAT</span><span class="v">${NEAT}</span></div>
+            <div class="br"><span class="l">+ Exercise</span><span class="v">${d.exReal}</span></div>
+            <div class="br hl"><span class="l">Maintenance</span><span class="v">${maintR.toLocaleString()}</span></div>
+            <div class="br"><span class="l">Eaten</span><span class="v">${d.cal.toLocaleString()}</span></div>
+            <div class="br fin"><span class="l">Deficit</span><span class="v">~${d.defReal}</span></div>
+            <div class="br lost"><span class="l">Cum. fat lost</span><span class="v">−${d.lbsR} lb</span></div>
+          </div>
+        </div>
+        <div class="chart-note" style="margin-top:10px;">Apple Watch deficit for reference: ~${d.defWatch} cal (exercise ${d.exWatch}). "Cum. fat lost" = cumulative estimate through Day ${d.n}.</div>
+      </div>
+    </div>`;
+}
 </script>
 </body>
 </html>

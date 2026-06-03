@@ -9,17 +9,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
       
-      - name: Build dashboard from data.json
-        run: |
-          node build.js
+      - name: Build dashboard
+        run: node build.js
       
-      - name: Commit updated dashboard
+      - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add index.html
-          git commit -m "Update dashboard from data.json" || true
-          git push
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-build dashboard from data.json" && git push)

@@ -1,0 +1,25 @@
+name: Build Dashboard
+
+on:
+  push:
+    paths:
+      - 'data.json'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build dashboard from data.json
+        run: |
+          node build.js
+      
+      - name: Commit updated dashboard
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          git commit -m "Update dashboard from data.json" || true
+          git push
